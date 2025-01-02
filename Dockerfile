@@ -29,6 +29,7 @@ ENV SERVICE_PORT=3000
 COPY package.json package-lock.json tsconfig.json ./
 RUN npm ci --no-fund --omit=dev
 
+COPY public/ ./public/
 COPY --from=builder /build/dist/ ./dist/
 
 CMD ["node", "/app/dist/app.js"]

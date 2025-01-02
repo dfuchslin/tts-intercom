@@ -3,6 +3,7 @@ import { config } from './config.js';
 import { prometheus } from '@hono/prometheus';
 import { Hono } from 'hono';
 import announcementRouter from './routers/announcementRouter.js';
+import { serveStatic } from '@hono/node-server/serve-static';
 
 const app = new Hono();
 
@@ -16,6 +17,8 @@ app.get('/health', (c) => {
 });
 
 app.route('/api/announce', announcementRouter);
+
+app.use('*', serveStatic({ root: './public' }));
 
 serve(
   {
