@@ -1,14 +1,17 @@
 import { serve } from '@hono/node-server';
-import { config } from './config.js';
+import { logger } from 'hono/logger';
 import { prometheus } from '@hono/prometheus';
+import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono } from 'hono';
 import announcementRouter from './routers/announcementRouter.js';
-import { serveStatic } from '@hono/node-server/serve-static';
+import { config } from './config.js';
+
 
 const app = new Hono();
 
 const { printMetrics, registerMetrics } = prometheus();
 
+app.use(logger());
 app.use('*', registerMetrics);
 app.get('/metrics', printMetrics);
 
