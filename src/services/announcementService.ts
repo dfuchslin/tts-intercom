@@ -3,6 +3,7 @@ import { spawn } from 'child_process';
 import * as espService from './hassService.js';
 import * as sonosService from './sonosService.js';
 import { config } from '../config.js';
+import * as path from 'node:path';
 
 export type Announcement = {
   url: string;
@@ -32,12 +33,17 @@ const broadcastAnnouncement = async (announcement: Announcement) => {
 };
 
 const convertToWav = async (inputPath: string, outputPath: string) => {
-  console.log(`Converting audio '${inputPath}' to ${outputPath}`);
+  const announcementChimePath = getAnnouncementChimePath();
+  console.log(`Converting and concatening audio '${announcementChimePath}', '${inputPath}' to ${outputPath}`);
   return new Promise((resolve, reject) => {
     const ffmpeg = spawn(config.FFMPEG_BIN, [
       '-y',
       '-i',
+      announcementChimePath,
+      '-i',
       inputPath,
+      '-filter_complex',
+      'concat=n=2:v=0:a=1',
       '-acodec',
       'pcm_s16le',
       '-ac',
@@ -63,4 +69,8 @@ const convertToWav = async (inputPath: string, outputPath: string) => {
       }
     });
   });
+};
+
+const getAnnouncementChimePath = () => {
+  return path.join(process.cwd(), 'public', 'static', 'sbb-1chan-44100.wav');
 };
