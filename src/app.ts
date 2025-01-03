@@ -1,10 +1,10 @@
 import { serve } from '@hono/node-server';
 import { logger } from 'hono/logger';
 import { prometheus } from '@hono/prometheus';
-import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono } from 'hono';
 import announcementRouter from './routers/announcementRouter.js';
 import { config } from './config.js';
+import staticFileRouter from './routers/staticFileRouter.js';
 
 
 const app = new Hono();
@@ -20,8 +20,7 @@ app.get('/health', (c) => {
 });
 
 app.route('/api/announce', announcementRouter);
-
-app.use('*', serveStatic({ root: './public' }));
+app.route('*', staticFileRouter);
 
 serve(
   {
