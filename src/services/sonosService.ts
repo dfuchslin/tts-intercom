@@ -3,9 +3,7 @@ import type { Announcement } from './announcementService.js';
 import { config } from '../config.js';
 
 export const enqueueBroadcast = (announcement: Announcement): Promise<void>[] => {
-  const broadcasts = config.INTERCOM_HOSTNAMES_SONOS.map((hostname) =>
-    broadcastAnnouncementToHost(announcement, hostname)
-  );
+  const broadcasts = config.INTERCOM_SONOS_HOSTS.map((hostname) => broadcastAnnouncementToHost(announcement, hostname));
   return broadcasts;
 };
 

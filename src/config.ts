@@ -7,14 +7,19 @@ const configSchema = z.object({
   TEMP_DIR: z.string().default('/tmp/tts-intercom'),
   ANNOUNCE_CHIME_PATH: z.string().default('/tmp/announcements'),
 
-  INTERCOM_HOSTNAMES_SONOS: z
+  FFMPEG_BIN: z.string(),
+
+  INTERCOM_SONOS_HOSTS: z
     .string()
     .transform((str) => (str ? str.split(',').map((s) => s.trim()) : []))
     .default(''),
-  INTERCOM_HOSTNAMES_ESP: z
+  INTERCOM_HASS_WEBHOOKS: z
     .string()
     .transform((str) => (str ? str.split(',').map((s) => s.trim()) : []))
     .default(''),
+  HASS_ENDPOINT: z.string(),
+
+  SERVER_ENDPOINT: z.string(),
 });
 
 dotenv.config();

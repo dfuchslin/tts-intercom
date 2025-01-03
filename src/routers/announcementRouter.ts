@@ -11,7 +11,7 @@ announcementRouter.get('/:id', async (c) => {
   console.log(`Streaming audio for id=${id}`);
   // const audioData = await announcementService.getAudio(id);
 
-  const filePath = `audio.wav`;
+  const filePath = `/tmp/audio.wav`;
   const audioData = await readFile(filePath);
 
   return new Response(audioData, {

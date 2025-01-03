@@ -24,6 +24,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV SERVICE_PORT=3000
+ENV FFMPEG_BIN=/usr/bin/ffmpeg
 
 # install only "prod" packages
 COPY package.json package-lock.json tsconfig.json ./
