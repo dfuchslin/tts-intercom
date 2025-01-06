@@ -11,12 +11,15 @@ announcementRouter.get('/:id', async (c) => {
   console.log(`Streaming audio for id=${id}`);
   // const audioData = await announcementService.getAudio(id);
 
-  const filePath = `/tmp/audio.wav`;
+  let filePath = '/tmp/audio.wav';
+  if (id === 'audio.mp3') {
+    filePath = '/tmp/audio.mp3';
+  }
   const audioData = await readFile(filePath);
 
   return new Response(audioData, {
     headers: {
-      'Content-Type': 'audio/wav',
+      'Content-Type': id === 'audio.mp3' ? 'audio/mpeg' : 'audio/wav',
       'Content-Length': audioData.length.toString(),
     },
   });
