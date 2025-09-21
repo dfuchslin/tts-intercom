@@ -1,7 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 import { spawn } from 'child_process';
 import * as espService from './hassService.js';
-import * as sonosService from './sonosService.js';
 import { config } from '../config.js';
 import * as path from 'node:path';
 
@@ -31,7 +30,6 @@ const createAnnouncement = async (buffer: Buffer<ArrayBufferLike>): Promise<Anno
 const broadcastAnnouncement = async (announcement: Announcement) => {
   const broadcasts: Promise<void>[] = [];
   broadcasts.push(...espService.enqueueBroadcast(announcement));
-  broadcasts.push(...sonosService.enqueueBroadcast(announcement));
   await Promise.all(broadcasts);
 };
 

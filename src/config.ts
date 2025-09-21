@@ -9,14 +9,10 @@ const configSchema = z.object({
 
   FFMPEG_BIN: z.string(),
 
-  INTERCOM_SONOS_HOSTS: z
-    .string()
-    .transform((str) => (str ? str.split(',').map((s) => s.trim()) : []))
-    .default(''),
   INTERCOM_HASS_WEBHOOKS: z
     .string()
-    .transform((str) => (str ? str.split(',').map((s) => s.trim()) : []))
-    .default(''),
+    .prefault('')
+    .transform((str) => (str ? str.split(',').map((s) => s.trim()) : [])),
   HASS_ENDPOINT: z.string(),
 
   SERVER_ENDPOINT: z.string(),
