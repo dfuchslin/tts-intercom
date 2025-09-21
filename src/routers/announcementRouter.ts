@@ -17,7 +17,7 @@ announcementRouter.get('/:id', async (c) => {
   }
   const audioData = await readFile(filePath);
 
-  return new Response(audioData, {
+  return new Response(new Uint8Array(audioData), {
     headers: {
       'Content-Type': id === 'audio.mp3' ? 'audio/mpeg' : 'audio/wav',
       'Content-Length': audioData.length.toString(),
