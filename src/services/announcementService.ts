@@ -50,7 +50,7 @@ const convertToWav = async (inputPath: string, outputPath: string) => {
       '-ac',
       '1',
       '-ar',
-      '44100',
+      '48000',
       outputPath,
     ]);
 
