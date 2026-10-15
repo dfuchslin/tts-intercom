@@ -1,4 +1,4 @@
-FROM node:24-alpine AS base
+FROM public.ecr.aws/docker/library/node:26-alpine AS base
 
 RUN apk add --update ffmpeg
 
