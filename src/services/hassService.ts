@@ -1,5 +1,5 @@
-import type { Announcement } from './announcementService.js';
-import { config } from '../config.js';
+import type { Announcement } from './announcementService.ts';
+import { config } from '../config.ts';
 import axios from 'axios';
 
 const client = axios.create({ baseURL: config.HASS_ENDPOINT });

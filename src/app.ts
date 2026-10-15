@@ -2,9 +2,9 @@ import { serve } from '@hono/node-server';
 import { logger } from 'hono/logger';
 import { prometheus } from '@hono/prometheus';
 import { Hono } from 'hono';
-import announcementRouter from './routers/announcementRouter.js';
-import { config } from './config.js';
-import staticFileRouter from './routers/staticFileRouter.js';
+import announcementRouter from './routers/announcementRouter.ts';
+import { config } from './config.ts';
+import staticFileRouter from './routers/staticFileRouter.ts';
 
 
 const app = new Hono();

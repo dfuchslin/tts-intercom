@@ -7,6 +7,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "types": ["node"],
+    "erasableSyntaxOnly": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "src",
     "outDir": "dist"
   }
 }

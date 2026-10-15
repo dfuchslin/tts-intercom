@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
-import * as announcementService from '../services/announcementService.js';
+import * as announcementService from '../services/announcementService.ts';
 import { readFile, stat } from 'node:fs/promises';
 
 const announcementRouter = new Hono();

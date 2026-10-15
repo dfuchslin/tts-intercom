@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises';
 import { spawn } from 'child_process';
-import * as espService from './hassService.js';
-import { config } from '../config.js';
+import * as espService from './hassService.ts';
+import { config } from '../config.ts';
 import * as path from 'node:path';
 
 export type Announcement = {

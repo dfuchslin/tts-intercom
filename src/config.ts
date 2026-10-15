@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import { z } from 'zod';
 
 const configSchema = z.object({
@@ -18,5 +17,4 @@ const configSchema = z.object({
   SERVER_ENDPOINT: z.string(),
 });
 
-dotenv.config();
 export const config = configSchema.parse(process.env);
