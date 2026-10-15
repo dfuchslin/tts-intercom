@@ -6,7 +6,6 @@ import announcementRouter from './routers/announcementRouter.ts';
 import { config } from './config.ts';
 import staticFileRouter from './routers/staticFileRouter.ts';
 
-
 const app = new Hono();
 
 const { printMetrics, registerMetrics } = prometheus();
